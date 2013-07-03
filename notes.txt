@@ -15,6 +15,7 @@ User stories:
 
 Engineering Task:
 - automated build
+- static code analysis
 - continuous integration
 - server-sie testing
 - client-side testing
