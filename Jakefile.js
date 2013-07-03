@@ -1,10 +1,22 @@
-task("default", ["lint"]);
+/* global desc, task, jake. fail, complete */
 
+/*"use strict";*/
+
+task("default", ["lint"]);
 
 desc("Lint everything");
 task("lint", [], function() {
 	var lint= require("./build/lint/lint_runner.js");
-	lint.validateFile("Jakefile.js", {}, {});
+
+	var files = new jake.FileList();
+	files.include("**/*.js");
+	files.exclude("node_modules");	
+	files.exclude("build/lint");	
+	console.log(files.toArray());
+	var options = {
+		node: true
+	};
+	lint.validateFile(files.toArray()[0], options, {});
 });
 
 
