@@ -3,3 +3,9 @@ WeeWikiPaint
 To build
 - node.js installed
 - ./jake.sh
+
+
+Notes
+- Jakefile (cap)
+- JSHint (Jakefile) :    'jake' is not defined.
+

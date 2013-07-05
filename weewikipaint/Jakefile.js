@@ -1,6 +1,7 @@
 /* global desc, task, jake. fail, complete */
+/*jslint node: true */
 
-/*"use strict";*/
+"use strict";
 
 task("default", ["lint"]);
 
@@ -10,14 +11,29 @@ task("lint", [], function() {
 
 	var files = new jake.FileList();
 	files.include("**/*.js");
-	files.exclude("node_modules");	
-	files.exclude("build/lint");	
+	files.exclude("node_modules");
+	files.exclude("build/lint");
 	console.log(files.toArray());
-	var options = {
-		node: true
-	};
-	lint.validateFile(files.toArray()[0], options, {});
+
+	lint.validateFile(files.toArray()[0], nodeLintOptions, {});
 });
 
-
-
+function nodeLintOptions() {
+    return  {
+		bitwise: true,
+		curly: false,
+		eqeqeq: true,
+		forin: true,
+		immed: true,
+		latedef: true,
+		newcap: true,
+		noarg: true,
+		noempty: true,
+		nonew: true,
+		regexp: true,
+		undef: true,
+		strict: true,
+		trailing: true,
+		node: true
+	};
+}
