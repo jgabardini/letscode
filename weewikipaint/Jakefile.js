@@ -1,22 +1,27 @@
 /* global desc, task, jake, fail, complete */
 /* jslint node: true */
-
 "use strict";
 
-task("default", ["lint"]);
+desc("Build and test");
+task("default", ["lint", "test"]);
 
 desc("Lint everything");
 task("lint", [], function() {
-	var lint= require("./build/lint/lint_runner.js");
+    var lint= require("./build/lint/lint_runner.js");
 
-	var files = new jake.FileList();
-	files.include("**/*.js");
-	files.exclude("node_modules");
-	files.exclude("build/lint");
-	console.log(files.toArray());
+    var files = new jake.FileList();
+    files.include("**/*.js");
+    files.exclude("node_modules");
+    files.exclude("build/lint");
+    console.log(files.toArray());
 
-	var passed = lint.validateFile(files.toArray()[0], nodeLintOptions, {});
-	if (!passed) fail("Lint Fail");
+    var passed = lint.validateFile(files.toArray()[0], nodeLintOptions, {});
+    if (!passed) fail("Lint Fail");
+});
+
+desc("test everithing");
+task("test", [], function() {
+    console.log("test goes here");
 });
 
 desc("Integration");
@@ -34,20 +39,20 @@ task("integration", ["default"], function() {
 
 function nodeLintOptions() {
     return  {
-		bitwise: true,
-		curly: false,
-		eqeqeq: true,
-		forin: true,
-		immed: true,
-		latedef: true,
-		newcap: true,
-		noarg: true,
-		noempty: true,
-		nonew: true,
-		regexp: true,
-		undef: true,
-		strict: true,
-		trailing: true,
-		node: true
-	};
+        bitwise: true,
+        curly: false,
+        eqeqeq: true,
+        forin: true,
+        immed: true,
+        latedef: true,
+        newcap: true,
+        noarg: true,
+        noempty: true,
+        nonew: true,
+        regexp: true,
+        undef: true,
+        strict: true,
+        trailing: true,
+        node: true
+    };
 }
