@@ -22,8 +22,8 @@ task("lint", [], function() {
 desc("test everithing");
 task("test", [], function() {
     var reporter = require("nodeunit").reporters["default"]; //minimal;
-    reporter.run(["src/server/_server_test.js"], null, function(failure){
-        console.log("tests done");
+    reporter.run(["src/server/_server_test.js"], null, function(failures){
+        if (failures) fail("tests failed");
         complete();
     });
 }, {async:true});
