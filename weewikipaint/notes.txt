@@ -16,3 +16,9 @@ User stories:
 Engineering Task:
 - server-sie testing
 - client-side testing
+
+To do
+- 
+
+Future
+- Abstract test frameworks
