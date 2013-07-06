@@ -21,7 +21,7 @@ task("lint", [], function() {
 
 desc("test everithing");
 task("test", [], function() {
-    var reporter = require("nodeunit").reporters["default"];
+    var reporter = require("nodeunit").reporters["default"]; //minimal;
     reporter.run(["src/server/_server_test.js"]);
 });
 
