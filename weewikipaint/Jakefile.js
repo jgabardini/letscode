@@ -1,5 +1,5 @@
-/* global desc, task, jake. fail, complete */
-/*jslint node: true */
+/* global desc, task, jake, fail, complete */
+/* jslint node: true */
 
 "use strict";
 
@@ -15,7 +15,21 @@ task("lint", [], function() {
 	files.exclude("build/lint");
 	console.log(files.toArray());
 
-	lint.validateFile(files.toArray()[0], nodeLintOptions, {});
+	var passed = lint.validateFile(files.toArray()[0], nodeLintOptions, {});
+	if (!passed) fail("Lint Fail");
+});
+
+desc("Integration");
+task("integration", ["default"], function() {
+    console.log("1. Make sure 'git status' is clean");
+    console.log("2. Build on the integration box");
+    console.log("   a. Walk over the integration box");
+    console.log("   b. 'git pull'");
+    console.log("   c. 'jake'");
+    console.log("   d. if build fail, start over.");
+    console.log("3. 'git checkout integration'");
+    console.log("4. 'git merge master --no-ff --log'");
+    console.log("5. 'git checkout master'");
 });
 
 function nodeLintOptions() {
