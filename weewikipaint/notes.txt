@@ -14,11 +14,11 @@ User stories:
 - marketing copy
 
 Engineering Task:
-- server-sie testing
-- client-side testing
+- simple http server
 
 To do
 - 
 
 Future
+- client-side testing
 - Abstract test frameworks
