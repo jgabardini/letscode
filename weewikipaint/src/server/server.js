@@ -3,15 +3,15 @@
 var http = require("http");
 var server;
 
-exports.start = function () {
+exports.start = function (portNumber) {
 	server = http.createServer();
 
 	server.on("request", function(request, response) {
 		var body = "<http><head><title>Spike HTTP server</title</head>" +
-			"<body><p><Ejemplo de server HTTP usando node.js/p></body></http>"
-		response.end(body);
+			"<body><p><Ejemplo de server HTTP usando node.js/p></body></http>";
+		response.end('Hello World');
 	});
-	server.listen(8080);	//TODO: remove duplication 
+	server.listen(portNumber);	
 }
 
 exports.stop = function (callback) {

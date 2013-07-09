@@ -8,13 +8,24 @@ exports.tearDown = function (done) {
 		console.log("tearDown");
 		done();
 	});
-	//TODO: manejar el caso que llamo a stopt antes que start
 };
+//TODO: manejar el caso que llamo a stopt antes que start
 //TODO: test-drven stop callback
-exports.testerverRespondsToGetrequests = function(test) {
-	server.start();
-	http.get("http://localhost:8080/", function(response) {
-		response.on("data", function(){})
-		test.done();
+
+exports.testServerReturnHelloWorld = function(test) {
+	server.start(8080);
+	var request = http.get("http://localhost:8080/");
+	request.on("response", function(response) {
+		var receiveData = false;
+		response.setEncoding('utf8');
+		test.equals(200, response.statusCode, "status code OK");
+		response.on("data", function(chunck){
+			receiveData = true;
+			test.equals("Hello World", chunck, "received text");
+		})
+		response.on("end", function(){
+			test.ok(receiveData, "should have receiveData");
+			test.done();
+		});
 	});
 };
