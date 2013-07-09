@@ -3,8 +3,6 @@
 var server = require("./server.js");
 var http = require("http");
 
-//TODO: manejar el caso que llamo a stopt antes que start
-
 exports.testServerReturnHelloWorld = function(test) {
 	server.start(8080);
 	var request = http.get("http://localhost:8080/");
@@ -25,14 +23,21 @@ exports.testServerReturnHelloWorld = function(test) {
 	});
 };
 
+exports.testRequiresPortNumber = function(test) {
+	test.throws(function() {
+		server.start();
+	});
+	test.done();
+}
+
 exports.testServerRunCallbackWhenStopCompetes = function(test) {
 	server.start(8080);
 	server.stop(function(){
-		test.done();		
+		test.done();
 	});
 }
 
-exports.testStopCalledTwiceThrowsException = function(test) {
+exports.testStopCalledWhenServerIsntRunningthrowsException = function(test) {
 	server.start(8080);
 	server.stop();
 	test.throws(function() {

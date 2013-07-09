@@ -1,24 +1,22 @@
 WeeWikiPaint
 
 Minimun Marketable Features:
-- marketing home page
+* marketing home page
 - collaborative painting page (very basic)
 - wiki-fy  the page
 - more complex painting?
 - more collaborative features?
 
 User stories:
-- "hello world" server
+* "hello world" server
 - "hello world" client (one browser)
 - support multiple browser
 - marketing copy
 
 Engineering Task:
-- simple http server
+
 
 To do
-- Spike HTTP server w/node
-- test-diven server
 - modify build script to eforce Node 0.8
 
 Future
