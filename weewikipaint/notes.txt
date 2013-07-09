@@ -17,7 +17,9 @@ Engineering Task:
 - simple http server
 
 To do
-- 
+- Spike HTTP server w/node
+- test-diven server
+- modify build script to eforce Node 0.8
 
 Future
 - client-side testing
