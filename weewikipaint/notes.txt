@@ -17,8 +17,14 @@ Engineering Task:
 
 
 To do
-- modify build script to eforce Node 0.8
+- Integrate
 
 Future
+- Creat 'fail fast' assert code
 - client-side testing
 - Abstract test frameworks
+
+
+
+Ideas Blog
+- CI -> nunca debería romperse. Integración (personal)
