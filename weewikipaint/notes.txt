@@ -8,23 +8,19 @@ Minimun Marketable Features:
 - more collaborative features?
 
 User stories:
-* "hello world" server
-- "hello world" client (one browser)
-- support multiple browser
+- serve a one-file homepage
+- serve 404 error for everything else
 - marketing copy
+- publish to Internet
 
 Engineering Task:
 
-
 To do
-- Integrate
 
 Future
 - Creat 'fail fast' assert code
 - client-side testing
 - Abstract test frameworks
-
-
 
 Ideas Blog
 - CI -> nunca debería romperse. Integración (personal)

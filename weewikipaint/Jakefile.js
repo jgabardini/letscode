@@ -5,6 +5,15 @@
     "use strict";
 
     var NODE_VERSION = "v0.10.12";
+    var GENERATED_DIR = "generated";
+    var TEMP_TESTFILE_DIR = GENERATED_DIR + "/test";
+
+    directory(TEMP_TESTFILE_DIR);
+
+    desc("Delete all generated files");
+    task("clean", [], function (){
+        jake.rmRf(GENERATED_DIR);
+    });
 
     desc("Build and test");
     task("default", ["lint", "test"]);
@@ -24,7 +33,7 @@
     });
 
     desc("test everithing");
-    task("test", ["nodeVersion"], function() {
+    task("test", ["nodeVersion", TEMP_TESTFILE_DIR], function() {
         var reporter = require("nodeunit").reporters["default"]; //minimal;
         reporter.run(["src/server/_server_test.js"], null, function(failures){
             if (failures) fail("tests failed");

@@ -2,6 +2,7 @@
 
 var server = require("./server.js");
 var http = require("http");
+var fs = require("fs");
 
 exports.testServerReturnHelloWorld = function(test) {
 	server.start(8080);
@@ -28,14 +29,14 @@ exports.testRequiresPortNumber = function(test) {
 		server.start();
 	});
 	test.done();
-}
+};
 
 exports.testServerRunCallbackWhenStopCompetes = function(test) {
 	server.start(8080);
 	server.stop(function(){
 		test.done();
 	});
-}
+};
 
 exports.testStopCalledWhenServerIsntRunningthrowsException = function(test) {
 	server.start(8080);
@@ -44,4 +45,11 @@ exports.testStopCalledWhenServerIsntRunningthrowsException = function(test) {
 		server.stop();
 	});
 	test.done();		
-}
+};
+
+exports.testServerServesAFile = function(test) {
+	var testDir = "generated/test";
+	var testFile = testDir +"/test.html";
+	fs.writeFileSync(testFile, "Hello world")
+	test.done();
+};
