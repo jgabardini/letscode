@@ -1,17 +1,21 @@
 "use strict";
 
 var http = require("http");
+var fs = require("fs");
 var server;
 
-exports.start = function (portNumber) {
+exports.start = function (htmlFileToServer, portNumber) {
 	if (!portNumber) throw "portNumber is requiered";
 	
 	server = http.createServer();
 
+
 	server.on("request", function(request, response) {
-		var body = "<http><head><title>Spike HTTP server</title</head>" +
-			"<body><p><Ejemplo de server HTTP usando node.js/p></body></http>";
-		response.end('Hello World');
+		fs.readFile(htmlFileToServer, function(err,data){
+			if (err) throw err;
+			response.end(data);
+		});
+
 	});
 	server.listen(portNumber);	
 }
