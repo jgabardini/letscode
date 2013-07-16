@@ -46,7 +46,7 @@ exports.testServerServesAFile = function(test) {
 	var testDir = "generated/test";
 	var testFile = testDir +"/test.html";
 	var testData = "un texto de prueba";
-	
+
 	fs.writeFileSync(testFile, testData);
 	server.start(TEST_FILE, 8080);
 	var request = http.get("http://localhost:8080/");
