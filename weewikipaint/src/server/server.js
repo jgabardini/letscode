@@ -10,15 +10,15 @@ exports.start = function (htmlFileToServer, portNumber) {
 	server = http.createServer();
 
 	server.on("request", function(request, response) {
-		if (request.url != "/")	{
-			response.statusCode = 404;
-			response.end();
-		}
-		else {		
+		if (request.url === "/" || request.url === "/index.html" )	{
 			fs.readFile(htmlFileToServer, function(err,data){
 				if (err) throw err;
 				response.end(data);
 			});
+		}
+		else {		
+			response.statusCode = 404;
+			response.end();
 		}
 
 	});
