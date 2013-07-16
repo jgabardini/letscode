@@ -56,6 +56,20 @@ exports.testServerServesAFile = function(test) {
 	});
 };
 
+exports.testReturnHomePageWhenAskedForIndex = function(test) {
+	var testDir = "generated/test";
+	var testFile = testDir +"/test.html";
+	var testData = "un texto de prueba";
+
+	fs.writeFileSync(testFile, testData);
+
+	httpGet("http://localhost:8080/index.html", function (response, responseData) {
+		test.equals(200, response.statusCode, "status code OK");
+		test.equals(testData, responseData, "received text");
+		test.done();
+	});
+};
+
 exports.testServerReturn404forEveryPageExceptHomePage = function(test) {
 	httpGet("http://localhost:8080/foo", function (response, responseData) {
 		test.equals(404, response.statusCode, "status code");
