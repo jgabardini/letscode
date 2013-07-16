@@ -48,20 +48,33 @@ exports.testServerServesAFile = function(test) {
 	var testData = "un texto de prueba";
 
 	fs.writeFileSync(testFile, testData);
-	server.start(TEST_FILE, 8080);
-	var request = http.get("http://localhost:8080/");
-	request.on("response", function(response) {
-		var receiveData = false;
-		response.setEncoding('utf8');
+
+	httpGet("http://localhost:8080", function (response, responseData) {
 		test.equals(200, response.statusCode, "status code OK");
+		test.equals(testData, responseData, "received text");
+		test.done();
+	});
+};
+
+exports.testServerReturn404forEveryPageExceptHomePage = function(test) {
+	httpGet("http://localhost:8080/foo", function (response, responseData) {
+		test.equals(404, response.statusCode, "status code");
+		test.done();
+	});
+};
+
+function httpGet(url, callback) {
+	server.start(TEST_FILE, 8080);
+	var request = http.get(url);
+	request.on("response", function(response) {
+		var receiveData = "";
+		response.setEncoding('utf8');
 		response.on("data", function(chunck){
-			receiveData = true;
-			test.equals(testData, chunck, "received text");
+			receiveData += chunck;
 		});
 		response.on("end", function() {
-			test.ok(receiveData, "should have receiveData");
 			server.stop(function () {
-				test.done();
+				callback(response, receiveData);
 			});
 		});
 	});

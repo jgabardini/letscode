@@ -8,7 +8,6 @@ Minimun Marketable Features:
 - more collaborative features?
 
 User stories:
-- serve a one-file homepage
 - serve 404 error for everything else
 - marketing copy
 - publish to Internet

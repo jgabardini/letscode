@@ -9,12 +9,17 @@ exports.start = function (htmlFileToServer, portNumber) {
 	
 	server = http.createServer();
 
-
 	server.on("request", function(request, response) {
-		fs.readFile(htmlFileToServer, function(err,data){
-			if (err) throw err;
-			response.end(data);
-		});
+		if (request.url != "/")	{
+			response.statusCode = 404;
+			response.end();
+		}
+		else {		
+			fs.readFile(htmlFileToServer, function(err,data){
+				if (err) throw err;
+				response.end(data);
+			});
+		}
 
 	});
 	server.listen(portNumber);	
